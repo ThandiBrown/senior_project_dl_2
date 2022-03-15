@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <style>
+
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 33%;
+        }
+        .tablink:hover {
+            background-color: #777;
+        }
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+        #Handwritten {background-color: lightskyblue;}
+        #Machine-Generated {background-color: dodgerblue;}
+        #Unknown {background-color: cadetblue;}
+
+        .Images {
+            display: inline;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<button class="tablink" onclick="openPage('Handwritten', this, 'lightskyblue')">Handwritten</button>
+<button class="tablink" onclick="openPage('Machine-Generated', this, 'dodgerblue')"
+        id="defaultOpen">Machine-Generated</button>
+<button class="tablink" onclick="openPage('Unknown', this, 'cadetblue')">Unknown</button>
+
+<div id="Handwritten" class="tabcontent"> <center>
+    <h3>Handwritten Images</h3>
+    <p> Sorting complete! <br> 3 images are categorized as handwritten.</p>
+    <div class="Images"> <img src="hwd.jpg" width="200" height="200"><img src="hwd1.jpg"
+        width="200" height="200"><img src="hwd2.jpg" width="200" height="200"></div>
+    <p>Need to sort more images? <br> Click the button below.</p><br><br>
+    <button type="button" onclick="location.href='Text Image Detector.html'">
+        Upload more images</button>
+</center></div>
+
+<div id="Machine-Generated" class="tabcontent"> <center>
+    <h3>Machine-Generated Images</h3>
+    <p>Sorting complete! <br> 3 images are categorized as Machine-Generated.</p>
+    <div class="Images"> <img src="typ.jpg" width="200" height="200"><img src="typ1.jpg"
+        width="200" height="200"><img src="typ2.jpg" width="200" height="200"></div>
+    <p>Need to sort more images? <br> Click the button below.</p><br><br>
+    <button type="button" onclick="location.href='Text Image Detector.html'">
+        Upload more images</button>
+</center></div>
+
+<div id="Unknown" class="tabcontent"><center>
+    <h3>Unknown Images</h3>
+    <p>Sorting complete! <br>
+        The correct category for these images could not be determined; therefore labeled Unknown. </p>
+    <div class="Images"> <img src="unk.jpg" width="200" height="200"><img src="unk1.jpg"
+        width="200" height="200"></div> <br> <br>
+    <p>Need to sort more images? <br> Click the button below.</p><br><br>
+    <button type="button" onclick="location.href='Text Image Detector.html'">
+        Upload more images</button>
+</center></div>
+
+<script>
+    function openPage(pageName,elmnt,color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Image Detector</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+       .sortButton {
+           border: 2px solid #008CBA;
+           color: black;
+       }
+       .uploadButton {
+           color: black;
+       }
+    </style>
+</head>
+<body>
+
+<h1> <center> Text Image Detector </center></h1>
+<center><img src="cover.png" width="300" height="230"></center> <br><br>
+
+<div>
+<center>
+    <form action="/action_page.php">
+        <label for="myFiles"> Select images to upload: </label>
+        <input type="file" id="myFiles" name="files" multiple
+               class="uploadButton w3-file w3-large"> <br><br>
+        <input type="button" value="Sort" class="sortButton
+               w3-button w3-xlarge w3-hover-blue"
+               onclick="location.href='TID Results.html'">
+    </form>
+
+</center>
+</div>
+
+
+</body>
+</html>
