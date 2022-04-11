@@ -10,7 +10,6 @@ import os, cv2
 import pathlib
 
 
-
 # finds the horizontal line on page
 def findHorizontalLines(img):
     img = cv2.imread(img) 
@@ -42,15 +41,14 @@ def pageSegmentation1(img, w, df_SegmentLocations):
 
     cropped = im2[y:y + h, 0:w] 
     segments.append(cropped)
-    # plt.figure(figsize=(8,8))
-    # plt.imshow(cropped)
-    # plt.title(str(2+1))
-    cv2.imwrite('C:/Users/Sharon/Documents/COMP 496/senior_project_dl_2/hw/'+outpathFile, cropped)
+
+    #file that data is to going to be stored
+    cv2.imwrite('C:/path/to/output/file'+outpathFile, cropped)
         
     return segments
 
 def main():
-    os.chdir(r'C:\Users\Sharon\Documents\COMP 496\formsI-Z\formsI-Z')
+    os.chdir(r'C:\Your\dir\here')
          
     fileList = [x for x in os.listdir() if 'png'  in x.lower()]
     print(fileList[:5])
