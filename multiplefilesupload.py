@@ -18,7 +18,7 @@ UPLOAD_FOLDER = "static/user/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 class_names = ['handwritten', 'machine']
-new_model = tf.keras.models.load_model('model/hm_model2')
+new_model = tf.keras.models.load_model('model/hm_model7')
 
 def produce_predictions(files_list):
     ''' Placeholder '''
@@ -33,8 +33,8 @@ def produce_predictions(files_list):
     for file in files_list:
         pathname = base_path + file.filename
 
-        img_height = 750
-        img_width = 475
+        img_height = 1000
+        img_width = 750
         img = tf.keras.utils.load_img(
             pathname, target_size=(img_height, img_width)
         )

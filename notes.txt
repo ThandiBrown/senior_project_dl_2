@@ -18,3 +18,5 @@ c) focus on overall look such as color design, font design, button design, sizin
     w3schools has tools for things like button design and font etc.
 2. Incorporating flask/ python with current design
 3. learning how to code flask-python
+
+File size limits?

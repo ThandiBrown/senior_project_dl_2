@@ -1,0 +1,66 @@
+* {
+    font-family: 'Abril Fatface';
+}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial,serif;
+}
+
+.tablink {
+    background-color: #712B75;
+    color: #F190B7;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 22px;
+    width: 33%;
+    
+}
+
+.tablink:hover {
+    background-color: #712B75;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: #712B75;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+    background-color: #F190B7;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.Images {
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Images img {
+    padding: 10px;
+}
+
+.custom {
+    background-color: #712B75;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+p {
+    font-size: 18px;
+}
+
