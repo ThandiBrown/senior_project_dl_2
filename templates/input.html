@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Image Detector</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <style>
+        * {
+            font-family: 'Abril Fatface';
+        }
+        
+        .homepage {
+            background-color: #F190B7;
+        }
+        .text {
+            border: 1px solid #A63EC5;
+            margin-right: 10%;
+            margin-left: 10%;
+            background-color: white;
+            color: #A63EC5;
+            
+        }
+        .header {
+            color: #712B75;
+            text-align: center;
+            
+            font-size: 52px;
+        }
+        
+        nav {
+            background-color: #712B75;
+            color: #F190B7;
+            font-size: 22px;
+        }
+
+        #water:hover {
+            background-color: red;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom {
+            background-color: #712B75;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="homepage">
+<nav class="nav w3-bar">
+    <a href="Text%20Image%20Detector.html" class="w3-button w3-bar-item w3-hover-white">Home</a>
+    <a href="#sort" class="w3-button w3-bar-item w3-hover-white">Start Sorting</a>
+    <a href="Contact.html" class="w3-button w3-bar-item w3-hover-white">Contact</a>
+</nav>
+<center>
+<h1 class="header" ><strong> Text Image Detector </strong></h1>
+<br>
+<br>
+
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <label for="myFiles" class="custom"> Select Images to Begin </label>
+    <!-- files[] will contain files from the user; is sent to the Python page -->
+    <input id="myFiles" type="file" name="files[]" multiple="true" autocomplete="off" required>
+    <br>
+    <input class="custom" type="submit" value="Sort">
+</form>
+<!--
+<form action="/action_page.php">
+    <label for="myFiles" class="custom"> Select Images to Begin </label>
+    <input 
+        type="file" 
+        id="myFiles" 
+    >
+    <br>
+    <input type="button" value="Sort" class="sortButton custom"
+        onclick="location.href='TID Results.html'">
+</form>
+-->
+<section id="sort"> <br>
+    <img class="mySlides" src="../static/hwd.jpg"
+         style="width:25%" height="200">
+    <img class="mySlides" src="../static/typ2.jpg"
+         style="width:25%" height="200">
+    <img class="mySlides" src="../static/hwd1.jpg"
+         style="width:25%" height="200">
+</section>
+</center>
+<script>
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000);
+}
+
+</script>
+</body>
+</html>

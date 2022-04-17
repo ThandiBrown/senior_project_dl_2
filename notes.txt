@@ -1,0 +1,20 @@
+pip install virtualenv
+virtualenv --version
+virtualenv flask_design
+pip install -r requirements.txt
+
+# EVERY TIME YOU WANT TO RUN THE SERVER
+python multiplefilesupload.py
+
+# WEBSITE FOR TESTING
+http://127.0.0.1:5000/
+
+
+# THINGS TO WORK ON
+1. Determine and work on the design
+a) spacing between images
+b) what will the design look like if there are 0 images? 4? 20?
+c) focus on overall look such as color design, font design, button design, sizing of elements on the page
+    w3schools has tools for things like button design and font etc.
+2. Incorporating flask/ python with current design
+3. learning how to code flask-python

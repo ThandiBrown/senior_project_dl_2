@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <title>Results</title>
+    <style>
+        * {
+            font-family: 'Abril Fatface';
+        }
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial,serif;
+        }
+        .tablink {
+            background-color: #712B75;
+            color: #F190B7;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 22px;
+            width: 33%;
+        }
+        .tablink:hover {
+            background-color: #712B75;
+
+        }
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: #712B75;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+        #Handwritten {
+            background-color: #F190B7;
+            text-align: center;
+        }
+        #Machine-Generated {
+            background-color: #F190B7;
+            text-align: center;
+        }
+        #Unknown {
+            background-color: #F190B7;
+            text-align: center;
+        }
+        .Images {
+            display: block;
+            flex-direction: row;
+            justify-content: center;
+            
+
+        }
+        .Images img {
+            padding: 10px;
+        }
+
+        .custom {
+            background-color: #712B75;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<button class="tablink" onclick="openTab('Handwritten', this, '#F190B7', '#712B75')">Handwritten</button>
+<button class="tablink" onclick="openTab('Machine-Generated', this, '#F190B7', '#712B75')"
+        id="defaultOpen">Machine-Generated</button>
+<button class="tablink" onclick="openTab('Unknown', this, '#F190B7', '#712B75')">Unknown</button>
+
+
+
+<div id="Handwritten" class="tabcontent">
+    <h1>Handwritten Images {{ handwritten|length }}</h1>
+    <div class="Images">
+        {% for filenames in handwritten %}
+            <img src="static/user/{{ filenames }}" width="200" height="200">
+        {% endfor %}
+    </div>
+    <br>
+    <p>
+        Need to sort more images?
+        <br>
+        Click the button below.
+    </p>
+    <button type="button" class="w3-button custom" onclick="location.href='Text Image Detector.html'">
+        Upload more images
+    </button>
+</div>
+
+<div id="Machine-Generated" class="tabcontent">
+    <h1>Machine-Generated Images {{ machine|length }}</h1>
+    <div class="Images">
+        {% for filenames in machine %}
+            <img src="static/user/{{ filenames }}" width="200" height="200">
+        {% endfor %}
+    </div>
+    <br>
+    <p>
+        Need to sort more images?
+        <br>
+        Click the button below.
+    </p>
+    <button type="button" class="w3-button custom" onclick="location.href='Text Image Detector.html'">
+        Upload more images
+    </button>
+</div>
+
+<div id="Unknown" class="tabcontent">
+    <h1>Unknown Images {{ unknown|length }}</h1>
+    <div class="Images">
+        {% for filenames in unknown %}
+            <img src="static/user/{{ filenames }}" width="200" height="200">
+        {% endfor %}
+    </div>
+    <br>
+    <p>
+        Need to sort more images?
+        <br>
+        Click the button below.
+    </p>
+    <button type="button" class="w3-button custom" onclick="location.href='Text Image Detector.html'">
+        Upload more images
+    </button>
+</div>
+
+
+<script>
+    function openTab(tab,elment,color, text) {
+        let i, tabcontent, tablink;
+        //hide all elements with tabcontent class by default
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        //remove bkg color of all tablinks
+        tablink = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablink.length; i++) {
+            tablink[i].style.backgroundColor = "";
+            tablink[i].style.color = "";
+        }
+        //show the specific tabcontent
+        document.getElementById(tab).style.display = "block";
+        //add specific color to the button used to open tabcontent
+        elment.style.backgroundColor = color;
+        elment.style.color = text;
+    }
+    // get element with "defaultOpen" id and click it
+    document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html>

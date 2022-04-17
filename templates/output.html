@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    
+    <h2>Handwritten {{ handwritten|length }}</h2>
+    <!-- This is the list from the Python page -->
+    {% for filenames in handwritten %}
+        <li><img width="100" height="100" src="static/user/{{ filenames }}" alt="User Image"></li>
+    {% endfor %}    
+
+    <h2>Machine {{ machine|length }}</h2>
+    {% for filenames in machine %}
+        <li><img width="100" height="100"src="static/user/{{ filenames }}" alt="User Image"></li>
+    {% endfor %}    
+
+    <h2>Unknown {{ unknown|length }}</h2>
+    {% for filenames in unknown %}
+        <li><img width="100" height="100"src="static/user/{{ filenames }}" alt="User Image"></li>
+    {% endfor %}
+</body>
+</html>
+
