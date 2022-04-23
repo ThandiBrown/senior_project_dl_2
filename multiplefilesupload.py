@@ -44,9 +44,12 @@ def produce_predictions(files_list):
         predictions = new_model.predict(img_array)
         score = tf.nn.softmax(predictions[0])
         class_prediction = class_names[np.argmax(score)]
+        percent_confidence = 100 * np.max(score)
 
         # if confidence percent is this low make it unknown
-        if class_prediction == "handwritten":
+        if percent_confidence < 70:
+            unknown.append(file.filename)
+        elif class_prediction == "handwritten":
             handwritten.append(file.filename)
         elif class_prediction == "machine":
             machine.append(file.filename)
