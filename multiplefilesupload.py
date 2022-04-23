@@ -47,7 +47,7 @@ def produce_predictions(files_list):
         percent_confidence = 100 * np.max(score)
 
         # if confidence percent is this low make it unknown
-        if percent_confidence < 70:
+        if percent_confidence < 80:
             unknown.append(file.filename)
         elif class_prediction == "handwritten":
             handwritten.append(file.filename)
