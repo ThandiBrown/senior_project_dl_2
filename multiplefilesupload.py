@@ -14,7 +14,7 @@ UPLOAD_FOLDER = "static/user/"
 ALLOWED_FILE_TYPE = set(['png', 'jpg', 'jpeg'])
 class_names = ['handwritten', 'machine']
 
-new_model = tf.keras.models.load_model('model/hm_model7')
+new_model = tf.keras.models.load_model('C:/Users/thanb/Documents/CodeFiles/model/hm_model7')
 
 def produce_predictions(files_list):
     ''' Placeholder '''
@@ -111,12 +111,20 @@ def upload_file():
         unknown = []
 
         # saves files to server (IT IS SAVED IN THE STATIC FOLDER)
+        skip_files = 0
+        ignore_files = []
         for file in files:
             if file and is_accepted_extension(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(UPLOAD_FOLDER, filename))
-
-        handwritten, machine, unknown= produce_predictions(files)
+            else:
+                skip_files += 1
+                ignore_files.append(file)
+        
+        if len(files) - skip_files > 0:
+            if skip_files:
+                files = [i for i in files if i not in ignore_files]
+            handwritten, machine, unknown = produce_predictions(files)
 
         # opens output HTML and passes the lists of filenames      
         return render_template("display.html", handwritten = handwritten, machine = machine, unknown = unknown)
