@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
@@ -9,13 +9,12 @@
 </head>
 <body>
 
-<button class="tablink" onclick="openTab('Handwritten', this, '#F190B7', '#712B75')" id="defaultOpen">Handwritten</button>
-<button class="tablink" onclick="openTab('Machine-Generated', this, '#F190B7', '#712B75')">Machine-Generated</button>
-<button class="tablink" onclick="openTab('Unknown', this, '#F190B7', '#712B75')">Unknown</button>
+<button class="category_buttons" onclick="toggle_category('Handwritten', this, '#F190B7', '#712B75')" id="starting_tab">Handwritten</button>
+<button class="category_buttons" onclick="toggle_category('Machine-Generated', this, '#F190B7', '#712B75')">Machine-Generated</button>
+<button class="category_buttons" onclick="toggle_category('Unknown', this, '#F190B7', '#712B75')">Unknown</button>
 
 
-
-<div id="Handwritten" class="tabcontent">
+<div id="Handwritten" class="display_sections">
     <h1>Handwritten Images {{ handwritten|length }}</h1>
     <div class="Images">
         {% for filenames in handwritten %}
@@ -33,7 +32,7 @@
     </form>
 </div>
 
-<div id="Machine-Generated" class="tabcontent">
+<div id="Machine-Generated" class="display_sections">
     <h1>Machine-Generated Images {{ machine|length }}</h1>
     <div class="Images">
         {% for filenames in machine %}
@@ -51,7 +50,7 @@
     </form>
 </div>
 
-<div id="Unknown" class="tabcontent">
+<div id="Unknown" class="display_sections">
     <h1>Unknown Images {{ unknown|length }}</h1>
     <div class="Images">
         {% for filenames in unknown %}
@@ -71,27 +70,26 @@
 
 
 <script>
-    function openTab(tab,elment,color, text) {
-        let i, tabcontent, tablink;
-        //hide all elements with tabcontent class by default
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    function toggle_category(section_id, element, background_color, text_color) {
+        let i, display_sections, category_buttons;
+        //hide all sections
+        display_sections = document.getElementsByClassName("display_sections");
+        for (i = 0; i < display_sections.length; i++) {
+            display_sections[i].style.display = "none";
         }
-        //remove bkg color of all tablinks
-        tablink = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablink.length; i++) {
-            tablink[i].style.backgroundColor = "";
-            tablink[i].style.color = "";
+        //Remove default design for buttons
+        category_buttons = document.getElementsByClassName("category_buttons");
+        for (i = 0; i < category_buttons.length; i++) {
+            category_buttons[i].style.backgroundColor = "";
+            category_buttons[i].style.color = "";
         }
-        //show the specific tabcontent
-        document.getElementById(tab).style.display = "block";
-        //add specific color to the button used to open tabcontent
-        elment.style.backgroundColor = color;
-        elment.style.color = text;
+        // show selected category
+        document.getElementById(section_id).style.display = "block";
+        element.style.backgroundColor = background_color;
+        element.style.color = text_color;
     }
-    // get element with "defaultOpen" id and click it
-    document.getElementById("defaultOpen").click();
+    // select the category
+    document.getElementById("starting_tab").click();
 
 </script>
 

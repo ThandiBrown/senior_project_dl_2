@@ -1,23 +1,19 @@
-#----------IGNORE----------
 import shutil
 import os
+from flask_ngrok import run_with_ngrok
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
 
-
 import tensorflow as tf
 import numpy as np
-#import matplotlib.pyplot as plte
 
-app=Flask(__name__)
-
-app.secret_key = "secret key"
-#app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app = Flask(__name__)
+#run_with_ngrok(app)
 
 UPLOAD_FOLDER = "static/user/"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+ALLOWED_FILE_TYPE = set(['png', 'jpg', 'jpeg'])
 class_names = ['handwritten', 'machine']
+
 new_model = tf.keras.models.load_model('model/hm_model7')
 
 def produce_predictions(files_list):
@@ -62,29 +58,45 @@ def produce_predictions(files_list):
         '''
     return handwritten, machine, unknown
 
-def remove_static_folder():
+'''
+Delete the static/user folder if exists (called when the website is loaded)
+'''
+def remove_user_folder():
     if os.path.isdir(UPLOAD_FOLDER):
         shutil.rmtree(UPLOAD_FOLDER)
 
+'''
+Create a new static/user folder
+'''
 def new_static_folder():
     if not os.path.isdir(UPLOAD_FOLDER):
         os.mkdir(UPLOAD_FOLDER)
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+'''
+Validates whether the user file is the correct file type
+'''
+def is_accepted_extension(filename):
+    if '.' in filename:
+        extension = filename.rsplit('.', 1)[1].lower()
+        if extension in ALLOWED_FILE_TYPE:
+            return True
+    return False
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-#------------IGNORE OVER---------
 
-# This is the first website called when you go to the 5000 website
-@app.route('/')
+'''
+Renders the homepage (where the user submits their images)
+'''
+@app.route('/', methods=['GET', 'POST'])
 def upload_form():
-    remove_static_folder()
+    # Create a new static/user folder to hold new user's images
+    remove_user_folder()
     new_static_folder()
     return render_template('input.html')
 
-# This is the website called once you press the submit button (displays images)
-@app.route('/', methods=['POST'])# SUBMIT BUTTON
+'''
+Renders diisplay page once the sort button is pressed
+'''
+@app.route('/display', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
         # displays a message if no files were submitted
@@ -100,15 +112,15 @@ def upload_file():
 
         # saves files to server (IT IS SAVED IN THE STATIC FOLDER)
         for file in files:
-            if file and allowed_file(file.filename):
+            if file and is_accepted_extension(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
 
         handwritten, machine, unknown= produce_predictions(files)
 
         # opens output HTML and passes the lists of filenames      
         return render_template("display.html", handwritten = handwritten, machine = machine, unknown = unknown)
 
-
+#app.run()
 if __name__ == "__main__":
     app.run(host='127.0.0.1',port=5000,debug=True,threaded=True)
