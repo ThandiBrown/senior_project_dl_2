@@ -5,7 +5,8 @@ import numpy as np
 from flask import request
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = "/content/gdrive/MyDrive/spweb/static/user/"
+#UPLOAD_FOLDER = "/content/gdrive/MyDrive/spweb/static/user/"
+UPLOAD_FOLDER = "static/user/"
 ALLOWED_FILE_TYPE = set(['png', 'jpg', 'jpeg'])
 class_names = ['handwritten', 'machine']
 
@@ -25,7 +26,7 @@ def new_static_folder():
         os.mkdir(UPLOAD_FOLDER)
 
 ''' 
-returns three lists conttaining the DL model prediction results
+returns three lists containing the DL model prediction results
 '''
 def produce_predictions(files_list, new_model):
     ''' Placeholder '''

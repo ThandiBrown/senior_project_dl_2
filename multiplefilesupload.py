@@ -26,7 +26,7 @@ Renders display page once the sort button is pressed
 @app.route('/display', methods=['POST'])
 def display_results():
     if request.method == 'POST':
-        handwritten, machine, unknown = helper.produce_results(request)
+        handwritten, machine, unknown = helper.produce_results(request, new_model)
         # opens output HTML and passes the lists of filenames      
         return render_template("display.html", handwritten = handwritten, machine = machine, unknown = unknown)
 
