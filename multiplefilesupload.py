@@ -4,14 +4,11 @@ import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
 
-
 import tensorflow as tf
 import numpy as np
-#import matplotlib.pyplot as plte
 
-app=Flask(__name__)
-
-app.secret_key = "secret key"
+app = Flask(__name__)
+#app.secret_key = "secret key"
 #app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 UPLOAD_FOLDER = "static/user/"
