@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Image Detector</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/input.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    
+</head>
+<body class="homepage">
+    <nav class="nav w3-bar">
+        <a href="#sort" class="w3-button w3-bar-item w3-hover-white">Start Sorting</a>
+    </nav>
+    <center>
+        <h1 class="header" ><strong> The Image Text Detector only allows up to 500 images.</strong></h1>
+        
+        <form method="post" action="/" enctype="multipart/form-data">
+            <input class="custom" type="submit" value="Back to Home">
+        </form>  
+    </center>
+</body>
+</html>

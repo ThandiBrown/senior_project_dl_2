@@ -84,9 +84,8 @@ def is_accepted_extension(filename):
 Performs file handling for the user's input and and runs produce_predictions
 Returns the results of produce_predictions
 '''
-def produce_results(request, new_model):
+def produce_results(files, new_model):
     # retrieve files from website
-    files = request.files.getlist('files[]')
     handwritten = []
     machine = []
     unknown = []
