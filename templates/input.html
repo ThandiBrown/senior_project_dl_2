@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Text Image Detector</title>
@@ -12,62 +11,52 @@
     
 </head>
 <body class="homepage">
-<nav class="nav w3-bar">
-    <a href="Text%20Image%20Detector.html" class="w3-button w3-bar-item w3-hover-white">Home</a>
-    <a href="#sort" class="w3-button w3-bar-item w3-hover-white">Start Sorting</a>
-    <a href="Contact.html" class="w3-button w3-bar-item w3-hover-white">Contact</a>
-</nav>
-<center>
-<h1 class="header" ><strong> Text Image Detector </strong></h1>
-<br>
-<br>
+    <nav class="nav w3-bar">
+        <a href="#sort" class="w3-button w3-bar-item w3-hover-white">Start Sorting</a>
+    </nav>
+    <center>
+        <h1 class="header" ><strong> Text Image Detector </strong></h1>
+        <br>
+        <br>
+        <!-- Form for the upload and sort buttons -->
+        <form method="post" action="/display" enctype="multipart/form-data">
+            <label for="myFiles" class="custom"> Select Images to Begin </label>
+            <!-- files[] will contain files from the user; is sent to the Python page -->
+            <input id="myFiles" type="file" name="files[]" multiple="true" autocomplete="off" required>
+            <br>
+            <input class="custom" type="submit" value="Sort">
+        </form>
+        <br>
+        <!-- An aesthetic display of images of documents -->
+        <section>
+            <img class="display_images" src="../static/hwd.jpg"
+                width="150" height="200">
+            <img class="display_images" src="../static/typ2.jpg"
+                width="150" height="200">
+            <img class="display_images" src="../static/hwd1.jpg"
+                width="150" height="200">
+        </section>
+    </center>
+    
+    <script>
+        var myIndex = 0;
+        /* Displays three alternating images of documents */
+        function catalog() {
+            var images = document.getElementsByClassName("display_images");
+            var i;
+            for (i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex >= images.length) {
+                myIndex = 0
+            }
+            images[myIndex].style.display = "block";
+            setTimeout(catalog, 3000);
+        }
+        
+        catalog();
 
-
-<form method="post" action="/" enctype="multipart/form-data">
-    <label for="myFiles" class="custom"> Select Images to Begin </label>
-    <!-- files[] will contain files from the user; is sent to the Python page -->
-    <input id="myFiles" type="file" name="files[]" multiple="true" autocomplete="off" required>
-    <br>
-    <input class="custom" type="submit" value="Sort">
-</form>
-<!--
-<form action="/action_page.php">
-    <label for="myFiles" class="custom"> Select Images to Begin </label>
-    <input 
-        type="file" 
-        id="myFiles" 
-    >
-    <br>
-    <input type="button" value="Sort" class="sortButton custom"
-        onclick="location.href='TID Results.html'">
-</form>
--->
-<section id="sort"> <br>
-    <img class="mySlides" src="../static/hwd.jpg"
-         width="150" height="200">
-    <img class="mySlides" src="../static/typ2.jpg"
-        width="150" height="200">
-    <img class="mySlides" src="../static/hwd1.jpg"
-        width="150" height="200">
-</section>
-</center>
-<script>
-
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 3000);
-}
-
-</script>
+    </script>
 </body>
 </html>

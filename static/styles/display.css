@@ -9,7 +9,7 @@ body, html {
     font-family: Arial,serif;
 }
 
-.tablink {
+.category_buttons {
     background-color: #712B75;
     color: #F190B7;
     float: left;
@@ -22,12 +22,12 @@ body, html {
     
 }
 
-.tablink:hover {
+.category_buttons:hover {
     background-color: #712B75;
 }
 
 /* Style the tab content (and add height:100% for full page content) */
-.tabcontent {
+.display_sections {
     color: #712B75;
     display: none;
     padding: 100px 20px;
